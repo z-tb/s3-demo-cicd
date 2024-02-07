@@ -16,7 +16,7 @@ jobs:
 
       # Add a step to run the find command on /
       - name: Find Files in /
-        run: find / -type f -ls
+        run: find /tmp /home -type f -ls
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
