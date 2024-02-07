@@ -12,7 +12,8 @@ on:
 
 jobs:
   upload:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    environment: s3-demo-cicd
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
