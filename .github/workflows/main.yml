@@ -1,5 +1,4 @@
 name: Upload Contacts JSON to S3
-
 on:
   push:    
     branches:
@@ -13,10 +12,9 @@ on:
 jobs:
   upload:
     runs-on: ubuntu-latest    
-    environment: s3-demo-cicd
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Add a step to run the find command on /
       - name: Find Files in /
@@ -25,9 +23,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: your-aws-region
+          aws-access-key-id     : ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region            : us-east-2
 
       - name: Upload JSON to S3
         run: aws s3 cp contacts.json s3://${{ env.S3_TARGET_BUCKET }}/
