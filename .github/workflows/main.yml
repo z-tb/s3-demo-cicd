@@ -24,6 +24,12 @@ jobs:
     steps:
       - name: S3 env target
         run: echo "env var is ${{ vars.AWS_S3_TARGET}}   "
+      
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: z-tb/s3-demo-cicd
+          path: './repo'
 
       - name: S3 local target
         run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
