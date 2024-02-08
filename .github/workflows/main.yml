@@ -37,9 +37,6 @@ jobs:
       - name: list workdir
         run: find $PWD -type f | grep json
 
-      - name: list home
-        run: pwd && find . -type f -ls | grep s3-demo
-
       - name: upload to s3
         run: aws s3 sync /home/runner/work/s3-demo-cicd/s3-demo-cicd/repo/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
