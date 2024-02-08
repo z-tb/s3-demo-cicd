@@ -33,13 +33,10 @@ jobs:
           repository: z-tb/s3-demo-cicd
           path: $PREFIX/$WORK_DIR
 
-      - name: S3 local target
-        run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
-      
       - name: list workdir
-        run: find $PWD -type f | grep json
+        run: find $WORK_PREFIX/$WORK_DIR -type f | grep json
 
       - name: upload to s3
-        run: aws s3 cp $PREFIX/$WORK_DIR/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
+        run: aws s3 cp ${{ WORK_PREFIX }}/${{ WORK_DIR }}/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
 
