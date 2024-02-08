@@ -14,7 +14,12 @@ jobs:
       MY_S3_TARGET: ${{ vars.AWS_S3_TARGET}}
 
     steps:
-      - name: Configure my AWS Credentials
-        run: echo foo
+      - name: S3 var target
+        run: echo ${{ vars.AWS_S3_TARGET}}
+      - name: S3 env target
+        run: echo ${{ env.AWS_S3_TARGET}}
+      - name: S3 local target
+        run: echo $MY_S3_TARGET
+
             
 
