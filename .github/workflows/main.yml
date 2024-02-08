@@ -21,11 +21,11 @@ jobs:
     steps:
       - name: S3 env target
         run: echo "env var is ${{ vars.AWS_S3_TARGET}}   "
-        
+
       - name: S3 local target
         run: echo "local var $MY_LOCAL_TARGET"
 
       - name: upload to s3
-        run: aws s3 ls
+        run: aws s3 ls s3://${{ vars.AWS_S3_TARGET }}
             
 
