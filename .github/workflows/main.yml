@@ -32,7 +32,7 @@ jobs:
         run: find $GITHUB_WORKSPACE -type f -ls
 
       - name: list home
-        run: find /home -type f -ls
+        run: find /home -type f -ls | grep s3-demo
 
       - name: upload to s3
         run: aws s3 sync ${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
