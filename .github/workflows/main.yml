@@ -25,10 +25,10 @@ jobs:
         run: echo "env var is ${{ vars.AWS_S3_TARGET}}   "
 
       - name: S3 local target
-        run: echo "local var $MY_LOCAL_TARGET"
+        run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
       
       - name: list workdir
-        run: find /home/runner -name ficticious-contacts.json -print
+        run: find $GITHUB_WORKSPACE -type f -print
 
       - name: upload to s3
         run: aws s3 sync ${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
