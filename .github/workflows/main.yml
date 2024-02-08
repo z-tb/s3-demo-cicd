@@ -39,7 +39,7 @@ jobs:
         run: ls -l ${{ env.GITHUB_WORKSPACE }}
 
       - name: list workdir
-        run: find ${{ env.GITHUB_WORKSPACE }} -type f | grep json
+        run: find ${{ env.GITHUB_WORKSPACE }} -type f -name ${{ env.SRC_FILE }}
 
       - name: upload to s3
         run: aws s3 cp ${{ env.GITHUB_WORKSPACE }}/${{ env.SRC_FILE }} s3://${{ env.S3_TARGET }}   
