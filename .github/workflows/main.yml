@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest            
     steps:
       - name: Configure my AWS Credentials
-        run: echo ${{ vars.AWS_S3_TARGET }}
+        run: echo "s3 target is: ${{ vars.AWS_S3_TARGET }}"
             
 
