@@ -8,12 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  upload:
+  s3-upload:
     runs-on: ubuntu-latest            
     env:
-      S3_TARGET: ${{ vars.AWS_S3_TARGET}}
+      MY_S3_TARGET: ${{ vars.AWS_S3_TARGET}}
+
     steps:
       - name: Configure my AWS Credentials
-        run: echo "s3 target is: ${{ S3_TARGET }}"
+        run: echo "s3 target is: $MY_S3_TARGET"
             
 
