@@ -21,5 +21,7 @@ jobs:
       - name: S3 local target
         run: echo "local var $MY_LOCAL_TARGET"
 
+      - name: upload to s3
+        run: aws s3 ls
             
 
