@@ -27,6 +27,6 @@ jobs:
         run: echo "local var $MY_LOCAL_TARGET"
 
       - name: upload to s3
-        run: aws s3 ls s3://$S3_BUCKET
+        run: aws s3 ls s3://${{ env.S3_BUCKET }}
             
 
