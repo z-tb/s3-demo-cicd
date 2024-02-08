@@ -28,8 +28,8 @@ jobs:
         run: echo "local var $MY_LOCAL_TARGET"
       
       - name: list workdir
-        run: ls -lart ~
-        
+        run: find ~/work -type f -ls
+
       - name: upload to s3
         run: aws s3 sync ${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
