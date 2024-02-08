@@ -9,15 +9,17 @@ on:
 
 jobs:
   s3-upload:
-    runs-on: ubuntu-latest            
+    runs-on: ubuntu-latest        
+    environment: s3-demo-cicd
+        
     env:
-      MY_S3_TARGET: "flalblakjsdaf"
+      MY_LOCAL_TARGET: "bug-bucket"
 
     steps:
       - name: S3 env target
-        run: echo "var is ${{ vars.AWS_S3_TARGET}}   "
+        run: echo "env var is ${{ vars.AWS_S3_TARGET}}   "
       - name: S3 local target
-        run: echo "env $MY_S3_TARGET"
+        run: echo "local var $MY_LOCAL_TARGET"
 
             
 
