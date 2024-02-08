@@ -9,10 +9,6 @@ on:
 
 jobs:
   upload:
-    permissions:
-      id-token: write
-      contents: read
-
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout Repository
@@ -23,12 +19,13 @@ jobs:
         run: ls -lart /home/runner/work
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id     : ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region            : us-east-2
 
+            
       - name: Upload JSON to S3
         #run: aws s3 cp contacts.json s3://s3/
         run: aws s3 ls
