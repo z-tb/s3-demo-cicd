@@ -15,19 +15,15 @@ jobs:
       contents: read    
     steps:
       - name: Configure my AWS Credentials
-        env:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
         uses: aws-actions/configure-aws-credentials@v1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+          aws-s3-target: ${{ AWS_S3_TARGET }}
         with:
           aws-access-key-id    :  ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region           :  us-east-2
           mask-aws-account-id  : yes
-
-            
-      - name: Upload JSON to S3
-        #run: aws s3 cp contacts.json s3://s3/
-        run: aws s3 ls
+          run: aws s3 ls
 
