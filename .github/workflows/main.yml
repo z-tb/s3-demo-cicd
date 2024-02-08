@@ -42,6 +42,6 @@ jobs:
         run: find ${{ env.GITHUB_WORKSPACE }} -type f -name ${{ env.SRC_FILE }} -ls
 
       - name: upload to s3
-        run: aws s3 cp ${{ env.GITHUB_WORKSPACE }}/${{ env.SRC_FILE }} s3://${{ env.S3_TARGET }}   
+        run: aws s3 cp $GITHUB_WORKSPACE/$SRC_FILE s3://${{ env.S3_TARGET }}   
             
 
