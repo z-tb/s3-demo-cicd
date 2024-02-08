@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{ env.GH_ACCT }}/${{ env.GH_REPO }}
-          path: ${{ env.WORK_PREFIX }}/${{ env.WORK_DIR }}
+          path: ${{ env.WORK_PREFIX }}/${{ env.GH_REPO }}/${{ env.WORK_DIR }}
 
       - name: list workdir
         run: find ${{ env.WORK_PREFIX }}/${{ env.WORK_DIR }} -type f | grep json
