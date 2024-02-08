@@ -29,7 +29,7 @@ jobs:
         run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
       
       - name: list workdir
-        run: find $GITHUB_WORKSPACE -type f -ls
+        run: find . -type f -ls | grep json
 
       - name: list home
         run: pwd && find . -type f -ls | grep s3-demo
