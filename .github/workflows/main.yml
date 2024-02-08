@@ -18,8 +18,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: us-east-2
       S3_BUCKET: ${{ vars.AWS_S3_TARGET }}
-      SRC_FILE: ficticious-contacts.json
-      WORK_DIR: ${{ GITHUB_WORKSPACE }}
+      SRC_FILE: ficticious-contacts.json                
+      WORK_DIR: ${{ vars.GITHUB_WORKSPACE }}
 
     steps:
       - name: S3 env target
@@ -31,8 +31,8 @@ jobs:
       - name: list workdir
         run: find $GITHUB_WORKSPACE -type f -ls
 
-      - name: list cwd
-        run: ls -l .
+      - name: list home
+        run: find /home -type f -ls
 
       - name: upload to s3
         run: aws s3 sync ${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
