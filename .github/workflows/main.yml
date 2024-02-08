@@ -14,8 +14,8 @@ jobs:
       MY_S3_TARGET: "flalblakjsdaf"
 
     steps:
-      - name: S3 var target
-        run: echo "var is ${{ vars.AWS_S3_TARGET}}   "
+      - name: S3 env target
+        run: echo "var is ${{ env.AWS_S3_TARGET}}   "
       - name: S3 local target
         run: echo "env $MY_S3_TARGET"
 
