@@ -38,6 +38,6 @@ jobs:
         run: find $PWD -type f | grep json
 
       - name: upload to s3
-        run: aws s3 sync /home/runner/work/s3-demo-cicd/s3-demo-cicd/repo/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
+        run: aws s3 cp /home/runner/work/s3-demo-cicd/s3-demo-cicd/repo/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
 
