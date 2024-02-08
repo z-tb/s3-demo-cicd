@@ -2,9 +2,10 @@ name: Upload Contacts JSON to S3
 on:
   push:    
     branches:
+      # only run when this branch is pushed to
       - json-upload
 
-  # Allows you to run this workflow manually from the Actions tab
+  # can run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -13,23 +14,21 @@ jobs:
     environment: s3-demo-cicd
         
     env:
-      MY_LOCAL_TARGET: "bug-bucket"
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: us-east-2
-      S3_BUCKET: ${{ vars.AWS_S3_TARGET }}
-      SRC_FILE: ficticious-contacts.json                
-      WORK_DIR: ${{ vars.GITHUB_WORKSPACE }}
+      AWS_ACCESS_KEY_ID     : ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION            : us-east-2
+      S3_BUCKET             : ${{ vars.AWS_S3_TARGET }}
+      SRC_FILE              : ficticious-contacts.json
+      WORK_PREFIX           ; /tmp  #/home/runner/work/s3-demo-cicd/s3-demo-cicd
+      WORK_DIR              : repo
 
     steps:
-      - name: S3 env target
-        run: echo "env var is ${{ vars.AWS_S3_TARGET}}   "
-      
+      # checkout the github repo onto the runner into a directory named 'repo'
       - name: Checkout
         uses: actions/checkout@v2
         with:
           repository: z-tb/s3-demo-cicd
-          path: './repo'
+          path: $PREFIX/$WORK_DIR
 
       - name: S3 local target
         run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
@@ -38,6 +37,6 @@ jobs:
         run: find $PWD -type f | grep json
 
       - name: upload to s3
-        run: aws s3 cp /home/runner/work/s3-demo-cicd/s3-demo-cicd/repo/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
+        run: aws s3 cp $PREFIX/$WORK_DIR/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
 
