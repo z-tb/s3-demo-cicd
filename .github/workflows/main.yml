@@ -33,8 +33,12 @@ jobs:
         with:
           repository: ${{ env.GH_ACCT }}/${{ env.GH_REPO }}
           path: ./${{ env.WORK_DIR}}
+      
       - name: display env
         run: env
+
+      - name: ls repo
+        run: ls -l ${{ env.GITHUB_WORKSPACE }}
         
       - name: list workdir
         run: find ${{ env.WORK_PREFIX }}/${{ env.GH_REPO }}/${{ env.WORK_DIR }} -type f | grep json
