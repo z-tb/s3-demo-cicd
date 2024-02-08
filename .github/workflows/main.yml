@@ -11,7 +11,7 @@ jobs:
   s3-upload:
     runs-on: ubuntu-latest            
     env:
-      MY_S3_TARGET: ${{ vars.AWS_S3_TARGET}}
+      MY_S3_TARGET: "flalblakjsdaf"
 
     steps:
       - name: S3 var target
@@ -19,7 +19,7 @@ jobs:
       - name: S3 env target
         run: echo ${{ env.AWS_S3_TARGET}}
       - name: S3 local target
-        run: echo ${{ env.MY_S3_TARGET }}
+        run: echo env: ${{ env.MY_S3_TARGET }}
 
             
 
