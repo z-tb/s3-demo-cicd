@@ -30,6 +30,8 @@ jobs:
       - name: list workdir
         run: find $GITHUB_WORKSPACE -type f -print
 
+      -name: list file
+        run: ls -l $GITHUB_WORKSPACE/$SRC_FILE
       - name: upload to s3
         run: aws s3 sync ${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
