@@ -37,6 +37,6 @@ jobs:
         run: find $WORK_PREFIX/$WORK_DIR -type f | grep json
 
       - name: upload to s3
-        run: aws s3 cp ${{ WORK_PREFIX }}/${{ WORK_DIR }}/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
+        run: aws s3 cp ${{ env.WORK_PREFIX }}/${{ env.WORK_DIR }}/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
             
 
