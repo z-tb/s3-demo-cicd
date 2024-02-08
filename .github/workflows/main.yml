@@ -15,26 +15,27 @@ jobs:
     # get runtime variables/secrets from this environmnet configuration
     environment: s3-demo-cicd
   
-    #/home/runner/work/s3-demo-cicd/s3-demo-cicd
     env:
       AWS_ACCESS_KEY_ID     : ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION            : us-east-2
       S3_BUCKET             : ${{ vars.AWS_S3_TARGET }}
       SRC_FILE              : ficticious-contacts.json
-      WORK_PREFIX           : /tmp
+      WORK_PREFIX           : /home/runner/work/
       WORK_DIR              : repo
+      GH_REPO               : s3-demo-cicd
+      GH_ACCT               : z-tb
 
     steps:
       # checkout the github repo onto the runner into a directory named 'repo'
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: z-tb/s3-demo-cicd
-          path: $PREFIX/$WORK_DIR
+          repository: ${{ env.GH_ACCT }}/${{ env.GH_REPO }}
+          path: ${{ env.PREFIX }}/${{ env.WORK_DIR }}
 
       - name: list workdir
-        run: find $WORK_PREFIX/$WORK_DIR -type f | grep json
+        run: find ${{ env.WORK_PREFIX }}/${{ env.WORK_DIR }} -type f | grep json
 
       - name: upload to s3
         run: aws s3 cp ${{ env.WORK_PREFIX }}/${{ env.WORK_DIR }}/${{ env.SRC_FILE }} s3://${{ vars.AWS_S3_TARGET}}   
