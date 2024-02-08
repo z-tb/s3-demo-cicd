@@ -28,7 +28,7 @@ jobs:
         run: echo "local var $MY_LOCAL_TARGET github_workspace:$GITHUB_WORKSPACE"
       
       - name: list workdir
-        run: find $GITHUB_WORKSPACE -type f -print
+        run: find $GITHUB_WORKSPACE -type f -ls
 
       - name: list file
         run: ls -l $GITHUB_WORKSPACE/$SRC_FILE
