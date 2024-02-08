@@ -15,6 +15,6 @@ jobs:
 
     steps:
       - name: Configure my AWS Credentials
-        run: echo "s3 target is: $MY_S3_TARGET"
+        run: echo foo
             
 
