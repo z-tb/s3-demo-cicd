@@ -19,7 +19,7 @@ jobs:
       - name: S3 env target
         run: echo ${{ env.AWS_S3_TARGET}}
       - name: S3 local target
-        run: echo env: ${{ env.MY_S3_TARGET }}
+        run: echo "env $MY_S3_TARGET"
 
             
 
