@@ -19,6 +19,7 @@ jobs:
       AWS_REGION: us-east-2
       S3_BUCKET: ${{ vars.AWS_S3_TARGET }}
       SRC_FILE: ficticious-contacts.json
+      WORK_DIR: ${{ GITHUB_WORKSPACE }}
 
     steps:
       - name: S3 env target
