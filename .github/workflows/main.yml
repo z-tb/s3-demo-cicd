@@ -10,16 +10,8 @@ on:
 jobs:
   upload:
     runs-on: ubuntu-latest            
-    permissions:
-      id-token: write
-      contents: read    
     steps:
       - name: Configure my AWS Credentials
-        env:
-          aws-s3-target: ${{ env.aws-s3-target}}
-        run: echo ${{ vars.AWS_S3_TARGET}}
+        run: echo ${{ vars.AWS_S3_TARGET }}
             
-      - name: Upload JSON to S3
-        #run: aws s3 cp contacts.json s3://s3/
-        run: aws s3 ls
 
